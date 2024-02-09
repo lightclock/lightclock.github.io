@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>💥Fireworks🎆</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <link rel="shortcut icon" type="image/png"
+        href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
+    <link rel="icon" type="image/png"
+        href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
+    <link rel="apple-touch-icon-precomposed"
+        href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage"
+        content="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .canvas-container {
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <script src="./js/jquery.min.js"
+        type="text/javascript"></script>
+    
+</head>
+
+<body>
+    
+
+    <div id="yhBtn"
+        style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff ; font-size:15px">
+        <p>Click and start</p>
+    </div>
+    
+
+    <!-- App -->
+    <div class="container">
+        <div class="loading-init">
+            <div class="loading-init__header"></div>
+            <div class="loading-init__status"></div>
+        </div>
+        <div class="stage-container remove">
+            <div class="page_two hide">
+                <div class="type_words" id="contents"></div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="trails-canvas"></canvas>
+                <canvas id="main-canvas"></canvas>
+                <canvas id="snow-canvas" style="opacity: 0.5;"></canvas>
+                <div id="wish_text" />
+            </div>
+        </div>
+    </div>
+
+    <!-- partial -->
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript">
+        
+
+        $('#yhBtn').click(e => {
+            $('#yhBtn').hide()
+            setTimeout(() => {
+                start()
+                fireworks();
+            }, 3800) 
+            setTimeout(() => {
+                function audioAutoPlay() {
+                    var audio = document.getElementById('audioDom');
+                    audio.play();
+                }
+                audioAutoPlay();
+                
+            }, 2000) 
+            console.log(updateConfig({ autoLaunch: true }));
+        })
+        function fireworks() {
+            $('.page_two').removeClass('hide');
+        }
+
+        
+        
+        function start() {
+            
+            var text = [
+                "Fireworks light up the sky with their lives,",
+                "and I'll warm you up with mine.",
+                "I love you Cael❤️",
+                "Happy New Year🎆"
+            ]
+            var str = text.join('<br><br>')
+            var str_ = ''
+            var i = 0
+            var content = document.getElementById('contents')
+            var timer = setInterval(() => {
+                if (str_.length < str.length) {
+                    str_ += str[i++]
+                    content.innerHTML = '<p>' + str_ + '<span class="xx" style="opacity: 1;color: red;">❤</span></p>'                        
+                } else {
+                    clearInterval(timer)
+                    content.innerHTML = '<p>' + str_ + '</p>'
+                }
+            }, 100)
+        }
+    </script>
+    <script type="text/javascript" src="./js/other.js"></script>
+    
+</body>
+
+
+
+</html>
+
